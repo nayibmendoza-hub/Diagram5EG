@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoilScan Mobile - Ciclo de Desarrollo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f0f4f0;
+            color: #1a2e1a;
+        }
+
+        .stage-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .stage-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .active-section {
+            display: block !important;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bg-soil {
+            background: linear-gradient(135deg, #2d5a27 0%, #1e3a1a 100%);
+        }
+
+        .btn-audio {
+            background: #eab308;
+            transition: all 0.2s;
+        }
+        .btn-audio:hover {
+            background: #ca8a04;
+            transform: scale(1.05);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 1.5rem;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- PANTALLA INICIAL: EL DIAGRAMA DE PASOS -->
+    <div id="home-view" class="max-w-6xl mx-auto">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-green-800 mb-4">SoilScan Mobile</h1>
+            <p class="text-lg text-green-700 font-medium italic">Metodología de Desarrollo Basada en Pressman</p>
+            <div class="h-1 w-24 bg-green-600 mx-auto mt-4 rounded-full"></div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+            
+            <div onclick="showDetail(1)" class="stage-card bg-white p-6 rounded-3xl border-b-8 border-green-600 shadow-md flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center font-bold text-xl mb-4">
+                    1
+                </div>
+                <h2 class="font-bold text-lg text-slate-800 uppercase tracking-tight">Comunicación</h2>
+                <p class="text-xs text-slate-500 mt-2">Inicio y Requisitos</p>
+                <div class="mt-4 text-green-600">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            
+            <div onclick="showDetail(2)" class="stage-card bg-white p-6 rounded-3xl border-b-8 border-green-600 shadow-md flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center font-bold text-xl mb-4">
+                    2
+                </div>
+                <h2 class="font-bold text-lg text-slate-800 uppercase tracking-tight">Planeación</h2>
+                <p class="text-xs text-slate-500 mt-2">Hoja de Ruta Técnica</p>
+                <div class="mt-4 text-green-600">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            
+            <div onclick="showDetail(3)" class="stage-card bg-white p-6 rounded-3xl border-b-8 border-green-600 shadow-md flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center font-bold text-xl mb-4">
+                    3
+                </div>
+                <h2 class="font-bold text-lg text-slate-800 uppercase tracking-tight">Modelado</h2>
+                <p class="text-xs text-slate-500 mt-2">Diseño y Arquitectura</p>
+                <div class="mt-4 text-green-600">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            
+            <div onclick="showDetail(4)" class="stage-card bg-white p-6 rounded-3xl border-b-8 border-green-600 shadow-md flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center font-bold text-xl mb-4">
+                    4
+                </div>
+                <h2 class="font-bold text-lg text-slate-800 uppercase tracking-tight">Construcción</h2>
+                <p class="text-xs text-slate-500 mt-2">Codificación y Pruebas</p>
+                <div class="mt-4 text-green-600">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            
+            <div onclick="showDetail(5)" class="stage-card bg-white p-6 rounded-3xl border-b-8 border-green-600 shadow-md flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center font-bold text-xl mb-4">
+                    5
+                </div>
+                <h2 class="font-bold text-lg text-slate-800 uppercase tracking-tight">Despliegue</h2>
+                <p class="text-xs text-slate-500 mt-2">Entrega y Evolución</p>
+                <div class="mt-4 text-green-600">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="mt-16 bg-white p-8 rounded-3xl shadow-sm border border-green-100">
+            <h3 class="text-xl font-bold text-green-800 mb-4 flex items-center gap-2">
+                <i class="fas fa-info-circle"></i> Instrucciones
+            </h3>
+            <p class="text-slate-600">Haz clic en cada una de las etapas para explorar cómo se aplicó el ciclo de vida de software específicamente para la creación de <b>SoilScan Mobile</b>. En cada sección encontrarás imágenes descriptivas y un botón de audio con voz en español mexicano.</p>
+        </div>
+    </div>
+
+    <!-- PANTALLA DE DETALLE -->
+    <div id="detail-view" class="hidden max-w-5xl mx-auto mt-4">
+        <button onclick="goBack()" class="mb-8 flex items-center gap-2 text-green-700 font-bold hover:text-green-900 transition-colors">
+            <i class="fas fa-chevron-left"></i> VOLVER AL CICLO COMPLETO
+        </button>
+
+        <div class="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-100">
+            <div class="flex flex-col lg:flex-row">
+                <!-- Imagen -->
+                <div class="lg:w-1/2 p-6">
+                    <div class="image-container shadow-inner">
+                        <img id="detail-image" src="" alt="Etapa SoilScan">
+                    </div>
+                </div>
+                
+                <!-- Contenido -->
+                <div class="lg:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span id="detail-id" class="bg-green-600 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold"></span>
+                        <h2 id="detail-title" class="text-4xl font-black text-slate-800 italic uppercase"></h2>
+                    </div>
+                    
+                    <h3 id="detail-subtitle" class="text-xl font-bold text-green-600 mb-6"></h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-2">Definición SoilScan</p>
+                            <p id="detail-desc" class="text-lg text-slate-700 leading-relaxed"></p>
+                        </div>
+                        
+                        <div>
+                            <p class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-2">Actividades Clave</p>
+                            <p id="detail-act" class="text-slate-600 bg-slate-50 p-4 rounded-2xl border-l-4 border-green-500"></p>
+                        </div>
+                    </div>
+
+                    <button onclick="speak()" class="btn-audio mt-10 w-full py-4 rounded-2xl text-white font-bold flex items-center justify-center gap-3 shadow-lg">
+                        <i class="fas fa-volume-up text-2xl"></i> ESCUCHAR EXPLICACIÓN (MX)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const stagesData = [{"id": 1, "nombre": "Comunicaci\u00f3n", "subtitulo": "Inicio y Requisitos", "descripcion": "En esta fase se identific\u00f3 la necesidad cr\u00edtica de los peque\u00f1os productores de Colima: la falta de acceso a laboratorios de suelo costosos. Se defini\u00f3 la visi\u00f3n de SoilScan como una herramienta de bolsillo accesible.", "actividades": "Entrevistas con agricultores locales, definici\u00f3n de los par\u00e1metros a medir (humedad, pH visual, textura) y establecimiento del alcance del MVP (Producto M\u00ednimo Viable).", "imagen": "https://images.unsplash.com/photo-1589923188900-85dae523342b?w=800&q=80", "audio_text": "Etapa uno: Comunicaci\u00f3n. En esta fase identificamos que los agricultores de Colima necesitan an\u00e1lisis de suelo r\u00e1pidos sin ir al laboratorio. Definimos que SoilScan debe ser f\u00e1cil de usar y funcionar en cualquier celular."}, {"id": 2, "nombre": "Planeaci\u00f3n", "subtitulo": "Hoja de Ruta T\u00e9cnica", "descripcion": "Se elabor\u00f3 el plan estrat\u00e9gico para desarrollar la IA de reconocimiento de im\u00e1genes. Se definieron los riesgos como la variaci\u00f3n de luz en las fotos del campo y se asignaron recursos para el desarrollo m\u00f3vil.", "actividades": "Creaci\u00f3n del cronograma de desarrollo, estimaci\u00f3n de costos de servidores para la IA y planificaci\u00f3n de la integraci\u00f3n con APIs meteorol\u00f3gicas.", "imagen": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80", "audio_text": "Etapa dos: Planeaci\u00f3n. Creamos un mapa de trabajo para entrenar nuestra inteligencia artificial. Tambi\u00e9n evaluamos riesgos, como qu\u00e9 pasa si la foto sale borrosa o hay poca luz en el terreno."}, {"id": 3, "nombre": "Modelado", "subtitulo": "Dise\u00f1o y Arquitectura", "descripcion": "Dise\u00f1o de la arquitectura de la aplicaci\u00f3n (Frontend/Backend) y de la interfaz de usuario (UI). Se crearon los prototipos de c\u00f3mo el usuario ver\u00e1 el 'escaneo' en su pantalla.", "actividades": "Dise\u00f1o de wireframes de la app, diagramas de flujo del an\u00e1lisis de imagen y modelado de la base de datos para el historial de suelos y mapas comunitarios.", "imagen": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80", "audio_text": "Etapa tres: Modelado. Dise\u00f1amos c\u00f3mo se ver\u00e1 la aplicaci\u00f3n. Creamos prototipos para que el bot\u00f3n de escaneo sea intuitivo y definimos c\u00f3mo se guardar\u00e1 la informaci\u00f3n de cada terreno en la base de datos."}, {"id": 4, "nombre": "Construcci\u00f3n", "subtitulo": "Codificaci\u00f3n y Pruebas", "descripcion": "Desarrollo del c\u00f3digo de la app y entrenamiento del modelo de Machine Learning con miles de fotos de suelos. Se realizaron pruebas de precisi\u00f3n para asegurar resultados confiables.", "actividades": "Programaci\u00f3n de la interfaz, integraci\u00f3n de la c\u00e1mara, entrenamiento del modelo de visi\u00f3n artificial y pruebas de rendimiento en diferentes dispositivos m\u00f3viles.", "imagen": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80", "audio_text": "Etapa cuatro: Construcci\u00f3n. Aqu\u00ed es donde programamos la aplicaci\u00f3n. Entrenamos a la inteligencia artificial con miles de im\u00e1genes de tierra para que aprenda a distinguir la humedad y el tipo de suelo correctamente."}, {"id": 5, "nombre": "Despliegue", "subtitulo": "Entrega y Evoluci\u00f3n", "descripcion": "Lanzamiento de SoilScan Mobile en las tiendas de aplicaciones. Se inicia el soporte t\u00e9cnico y se recolecta retroalimentaci\u00f3n de los usuarios para futuras mejoras como el m\u00f3dulo de compostaje.", "actividades": "Publicaci\u00f3n en tiendas, monitoreo de errores en tiempo real, soporte a usuarios y recolecci\u00f3n de feedback para la versi\u00f3n dos punto cero.", "imagen": "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=800&q=80", "audio_text": "Etapa cinco: Despliegue. Lanzamos SoilScan para que todos los agricultores puedan descargarla. Escuchamos sus comentarios para mejorar la app y agregar nuevas funciones, como la gu\u00eda de compostaje."}];
+        let currentStage = null;
+
+        function showDetail(id) {
+            currentStage = stagesData.find(s => s.id === id);
+            
+            document.getElementById('detail-id').innerText = currentStage.id;
+            document.getElementById('detail-title').innerText = currentStage.nombre;
+            document.getElementById('detail-subtitle').innerText = currentStage.subtitulo;
+            document.getElementById('detail-desc').innerText = currentStage.descripcion;
+            document.getElementById('detail-act').innerText = currentStage.actividades;
+            document.getElementById('detail-image').src = currentStage.imagen;
+
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('detail-view').classList.add('active-section');
+            window.scrollTo(0, 0);
+        }
+
+        function goBack() {
+            window.speechSynthesis.cancel();
+            document.getElementById('detail-view').classList.remove('active-section');
+            document.getElementById('detail-view').classList.add('hidden');
+            document.getElementById('home-view').classList.remove('hidden');
+        }
+
+        function speak() {
+            if (!currentStage) return;
+            
+            window.speechSynthesis.cancel();
+            const msg = new SpeechSynthesisUtterance(currentStage.audio_text);
+            
+            // Intentar buscar voz de México
+            const voices = window.speechSynthesis.getVoices();
+            const mxVoice = voices.find(v => v.lang.includes('es-MX')) || voices.find(v => v.lang.includes('es'));
+            
+            if (mxVoice) msg.voice = mxVoice;
+            msg.lang = 'es-MX';
+            msg.rate = 0.9; // Un poco más lento para claridad
+            msg.pitch = 1;
+            
+            window.speechSynthesis.speak(msg);
+        }
+
+        // Precarga de voces para Chrome/Safari
+        window.speechSynthesis.onvoiceschanged = () => {
+            window.speechSynthesis.getVoices();
+        };
+    </script>
+</body>
+</html>
